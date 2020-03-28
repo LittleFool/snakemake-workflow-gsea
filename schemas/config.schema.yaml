@@ -1,0 +1,49 @@
+$schema: "http://json-schema.org/draft-06/schema#"
+
+description: snakemake configuration file
+
+type: object
+
+properties:
+  genomeDir:
+    type: string
+  annotation:
+    type: string
+  samples:
+    type: string
+  units:
+    type: string
+
+  trimming:
+    type: object
+    properties:
+      skip:
+        type: boolean
+      adapter:
+        type: string
+        pattern: "^[ACGT]+$"
+
+  c:
+    type: object
+    properties:
+      scriptFile:
+        type: string
+      params:
+        type: string
+      geneSetDatabases:
+        type: string
+      chip:
+        type: string
+    required:
+      - scriptFile
+      - params
+      - geneSetDatabases
+      - chip
+
+required:
+  - genomeDir
+  - annotation
+  - samples
+  - units
+  - trimming
+  - gsea

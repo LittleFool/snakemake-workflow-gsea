@@ -1,0 +1,16 @@
+genomeDir: data/reference/STARGenome
+annotation: data/reference/annotation.gtf
+samples: samples.tsv
+units: units.tsv
+
+trimming:
+  # skip trimming: false or true
+  skip: false
+  # the sequencing adapter
+  adapter: ACGGATCGATCGATCGATCGAT
+
+gsea:
+  scriptFile: /mnt/Data/GSEA_4.0.3/gsea-cli.sh
+  params: "-collapse Collapse -mode Max_probe -norm None -nperm 1000 -scoring_scheme weighted -rpt_label workflow -create_svgs true -include_only_symbols true -make_sets true -plot_top_x 20 -rnd_seed timestamp -set_max 500 -set_min 15 -zip_report false"
+  geneSetDatabases: "ftp.broadinstitute.org://pub/gsea/gene_sets/h.all.v7.0.symbols.gmt,ftp.broadinstitute.org://pub/gsea/gene_sets/c1.all.v7.0.symbols.gmt,ftp.broadinstitute.org://pub/gsea/gene_sets/c2.all.v7.0.symbols.gmt"
+  chip: "ftp.broadinstitute.org://pub/gsea/annotations_versioned/Mouse_Gene_Symbol_Remapping_MSigDB.v7.0.chip"

@@ -1,0 +1,9 @@
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - r-base =3.6.1
+  - r-data.table =1.12.2
+  - bioconductor-deseq2 =1.26.0
+  - bioconductor-rsubread =2.0.0
