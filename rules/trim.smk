@@ -11,7 +11,7 @@ rule cutadapt_pe:
 		fastq1="data/trimmed/{sample}-{unit}.1.fastq.gz",
 		fastq2="data/trimmed/{sample}-{unit}.2.fastq.gz"
 	threads:
-		workflow.cores - 4
+		workflow.cores / 2
 	params:
 		reverseAdapter=getReverseAdapter()
 	conda:
@@ -21,7 +21,7 @@ rule cutadapt_pe:
 	benchmark:
 		"benchmarks/cutadapt_pe/{sample}-{unit}.tsv"
 	shell:
-		"cutadapt -j {threads} -a {config[trimming][adapter]} -A {params.reverseAdapter} -o {output.fastq1} -p {output.fastq2} {input} > {log}"
+		"cutadapt -j {threads} -m 1 -a {config[trimming][adapter]} -A {params.reverseAdapter} -o {output.fastq1} -p {output.fastq2} {input} > {log}"
 
 rule cutadapt_se:
 	input:
@@ -37,4 +37,4 @@ rule cutadapt_se:
 	benchmark:
 		"benchmarks/cutadapt_se/{sample}-{unit}.tsv"
 	shell:
-		"cutadapt -j {threads} -a {config[trimming][adapter]} -o {output} {input} > {log}"
+		"cutadapt -j {threads} -m 1 -a {config[trimming][adapter]} -o {output} {input} > {log}"
