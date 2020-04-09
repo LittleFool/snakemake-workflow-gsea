@@ -23,8 +23,8 @@ dds <- dds[ rowSums(counts(dds)) > 1, ]
 dds <- DESeq(dds, parallel=parallel)
 
 res <- results(dds)
-res.dds <- res[order(res$padj),]
+res.dds <- res[order(res$stat),]
 
-RNK = data.table(Gene_Name = row.names(res.dds), padj = res.dds$padj)
-RNK = subset(RNK, padj != "NA")
+RNK = data.table(Gene_Name = row.names(res.dds), stat = res.dds$stat)
+RNK = subset(RNK, stat != "NA")
 write.table(RNK, snakemake@output[[1]],quote=F,sep="\t", row.names = F)
