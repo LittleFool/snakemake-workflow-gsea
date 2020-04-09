@@ -30,5 +30,5 @@ rule align:
 	benchmark:
 		"benchmarks/star/{sample}-{unit}.tsv"
 	shell:
-		"STAR --runThreadN {threads} --genomeDir {config[genomeDir]} --readFilesIn {input} --readFilesCommand zcat --outFileNamePrefix data/mapped_reads/{wildcards.sample}-{wildcards.unit}. --outReadsUnmapped Fastx --outSAMtype BAM Unsorted --outStd Log {log}"
+		"STAR --runThreadN {threads} --genomeDir {config[genomeDir]} --readFilesIn {input} --readFilesCommand zcat --outFileNamePrefix data/mapped_reads/{wildcards.sample}-{wildcards.unit}. --outReadsUnmapped Fastx --outSAMtype BAM Unsorted --outStd Log > {log}"
 
