@@ -14,6 +14,14 @@ properties:
   units:
     type: string
 
+  counting:
+    type: object
+    properties:
+      isPairedEnd:
+        type: boolean
+    required:
+      - isPairedEnd
+
   trimming:
     type: object
     properties:
@@ -22,6 +30,8 @@ properties:
       adapter:
         type: string
         pattern: "^[ACGT]+$"
+    required:
+      - skip
 
   c:
     type: object
